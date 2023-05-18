@@ -13,18 +13,42 @@ namespace projeto_produtos
 
         DateTime DataCadastro { get; set; }
 
+        List<Marca> ListaDeMarcas = new List<Marca>();
+
         public void Cadastrar()
         {
+            Marca _marcas = new Marca();
 
+            Console.WriteLine($"Informe o código da marca: ");
+            _marcas.Codigo = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Informe o nome da marca: ");
+            _marcas.NomeMarca = Console.ReadLine();
+
+            _marcas.DataCadastro = DateTime.Now;
+
+            ListaDeMarcas.Add(_marcas);
         }
 
         public void Listar()
         {
-
+            foreach (var item in ListaDeMarcas)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(@$"
+                Código da marca: {item.Codigo}
+                Nome da marca: {item.NomeMarca}
+                {item.DataCadastro}");
+                Console.ResetColor();
+            }
         }
 
-        public void Deletar()
+        public void Deletar(int _cod)
         {
+
+            Marca marcaEncontrada = ListaDeMarcas.Find(marca => marca.Codigo == _cod);
+            ListaDeMarcas.Remove(marcaEncontrada);
+            Console.WriteLine($"Marca deletada com sucesso!");
             
         }
     }
