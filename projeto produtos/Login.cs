@@ -14,22 +14,42 @@ namespace projeto_produtos
         {
             Usuario user = new Usuario();
 
-            user.Cadastrar();
-            GerarMenu();
+            Logar(user);
+
+            if (Logado == true)
+            {
+                GerarMenu();
+            }
 
         }
 
 
-        public void Logar()
-        {   
-            Usuario validacao = new Usuario();
-            Console.WriteLine($"Informe seu email: ");
-            string email = Console.ReadLine();
-            
-            Console.WriteLine($"Informe a senha: ");
-            string senha = Console.ReadLine();
+        public void Logar(Usuario usuario)
+        {
 
-            
+            do
+            {
+                Console.WriteLine($"Insira seu email: ");
+                string email = Console.ReadLine();
+
+                Console.WriteLine($"Insira sua senha: ");
+                string senha = Console.ReadLine();
+
+                if (email == usuario.Email && senha == usuario.Senha)
+                {
+                    this.Logado = true;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Login realizado!");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    this.Logado = false;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Falha ao logar!");
+                    Console.ResetColor();
+                }
+            } while (Logado == false);
         }
 
         public void Deslogar()
@@ -46,8 +66,9 @@ namespace projeto_produtos
 
             do
             {
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(@$"
+=======================
 [1] - Cadastrar produto
 [2] - Listar produtos
 [3] - Deletar produto
@@ -56,7 +77,8 @@ namespace projeto_produtos
 [5] - Listar marcas
 [6] - Deletar marca
 =======================
-[0] - Sair");
+[0] - Sair
+=======================");
                 Console.ResetColor();
                 opcao = Console.ReadLine();
 

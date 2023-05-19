@@ -15,28 +15,29 @@ namespace projeto_produtos
 
         DateTime DataCadastro { get; set; }
 
-        List<Usuario> ListaDeUsuarios = new List<Usuario>();
+        public Usuario()
+        {
+            Cadastrar();
+        }
 
         //cadastrando usuário
         public void Cadastrar()
         {
-            Usuario _novoUsuario = new Usuario();
+            this.Nome = "Gabriel";
+            this.Email = "gabriel@gmail.com";
+            this.Senha = "134";
+            this.DataCadastro = DateTime.Now;
 
-            Console.WriteLine($"Informe o nome do novo usuário: ");
-            _novoUsuario.Nome = Console.ReadLine();
-            
-            Console.WriteLine($"Informe o email do novo usuário: ");
-            _novoUsuario.Email = Console.ReadLine();
-            
-            Console.WriteLine($"Informe a senha do novo usuário: ");
-            _novoUsuario.Senha = Console.ReadLine();
-
-            ListaDeUsuarios.Add(_novoUsuario);
         }
 
-        public void Deletar()
+        public void DeletUsuario()
         {
+            this.Nome = "";
+            this.Email = "";
+            this.Senha = "";
+            this.DataCadastro = DateTime.Parse("0000-00-00T00:00:00");
 
         }
+
     }
 }

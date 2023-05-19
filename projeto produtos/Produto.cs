@@ -15,12 +15,15 @@ namespace projeto_produtos
 
         DateTime DataCadastro { get; set; }
 
+        public Usuario CadastradoPor { get; set; }
+
         List<Produto> ListaDeProdutos = new List<Produto>();
 
-        Marca _marcas = new Marca();
-        public void Cadastrar()
+        public Marca Marca = new Marca();
+
+        Usuario user = new Usuario();
+        public Produto Cadastrar()
         {
-            
             Produto _produtos = new Produto();
 
             Console.WriteLine($"Informe o código do produto: ");
@@ -32,16 +35,14 @@ namespace projeto_produtos
             Console.WriteLine($"Informe o preço do produto: ");
             _produtos.Preco = float.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Informe o código da marca: ");
-            _produtos._marcas.Codigo = int.Parse(Console.ReadLine());
 
-            Console.WriteLine($"Informe o nome da marca: ");
-            _produtos._marcas.NomeMarca = Console.ReadLine();
+            _produtos.Marca = Marca.Cadastrar();
 
             _produtos.DataCadastro = DateTime.Now;
 
             ListaDeProdutos.Add(_produtos);
 
+            return _produtos;
         }
 
         public void Listar()
@@ -54,9 +55,10 @@ Código do produto: {item.Codigo}
 Nome do produto: {item.NomeProduto}
 Preço do produto: {item.Preco}
 --------------------------------
-Código da marca: {item._marcas.Codigo}
-Nome da marca: {item._marcas.NomeMarca}
-{item.DataCadastro}");
+Código da marca: {item.Marca.Codigo}
+Nome da marca: {item.Marca.NomeMarca}
+{item.DataCadastro}
+");
                 Console.ResetColor();
             }
         }

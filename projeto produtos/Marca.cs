@@ -13,9 +13,9 @@ namespace projeto_produtos
 
         DateTime DataCadastro { get; set; }
 
-        List<Marca> ListaDeMarcas = new List<Marca>();
+        public static List<Marca> ListaDeMarcas = new List<Marca>();
 
-        public void Cadastrar()
+        public Marca Cadastrar()
         {
             Marca _marcas = new Marca();
 
@@ -28,6 +28,8 @@ namespace projeto_produtos
             _marcas.DataCadastro = DateTime.Now;
 
             ListaDeMarcas.Add(_marcas);
+
+            return _marcas;
         }
 
         public void Listar()
@@ -49,7 +51,7 @@ namespace projeto_produtos
             Marca marcaEncontrada = ListaDeMarcas.Find(marca => marca.Codigo == _cod);
             ListaDeMarcas.Remove(marcaEncontrada);
             Console.WriteLine($"Marca deletada com sucesso!");
-            
+
         }
     }
 }
